@@ -34,26 +34,37 @@ EOF
 # Restart Apache to make sure
 systemctl restart apache2
 
-# CTF Challenge 2: Privilege Escalation 
+# --- CTF Challenge 3: Privilege Escalation (Cron Job) ---
 
-
-echo "flag{gratz_u_are_root_9921}" > /root/root.txt
+echo "flag{cron_jobs_are_a_classic_!_9432}" > /root/root.txt
 
 chmod 600 /root/root.txt
 
+echo "#!/bin/bash" > /opt/cleanup.sh
+echo "# This script is run by root to clear temp files." >> /opt/cleanup.sh
+echo "echo 'Cleanup complete.'" >> /opt/cleanup.sh
 
-cp /bin/bash /usr/local/bin/get-root-shell
+chmod 777 /opt/cleanup.sh
 
-chmod +s /usr/local/bin/get-root-shell
+
+echo "* * * * * root /opt/cleanup.sh" >> /etc/crontab
+
+
+# --- CTF Challenge 2: Network Service (FTP) ---
 
 
 apt-get install -y vsftpd
 
+sed -i 's/anonymous_enable=YES/anonymous_enable=NO/' /etc/vsftpd.conf
 
-sed -i 's/anonymous_enable=NO/anonymous_enable=YES/' /etc/vsftpd.conf
+# 3. Create the new user with the password from our web clue
+useradd -m ftp-user -p $(openssl passwd -1 SuperSecurePass123!)
 
 
-echo "flag{ftp_is_fun_555}" > /srv/ftp/network-flag.txt
+echo "Sysadmin Note: That /opt/cleanup.sh script keeps breaking." > /home/ftp-user/note.txt
+echo "It's set to run as root every minute, so it's a pain to fix!" >> /home/ftp-user/note.txt
 
 
 systemctl restart vsftpd
+
+# --- End of Challenge 2 ---
