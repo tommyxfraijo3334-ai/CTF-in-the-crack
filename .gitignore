@@ -1,0 +1,47 @@
+# ===================================================================
+# Vagrant
+# This is the most important one. Ignores the machine-specific
+# "state" folder, as we discussed.
+# ===================================================================
+.vagrant/
+
+
+# ===================================================================
+# Python
+# Ignores files your computer generates when running Python.
+# ===================================================================
+# Bytecode files
+*.pyc
+__pycache__/
+
+# Virtual environments
+# If you use a Python venv, you don't want to commit all the
+# libraries you've installed, just the 'requirements.txt' file.
+.venv/
+venv/
+ENV/
+
+# Secret files
+.env
+*.env
+
+
+# ===================================================================
+# Common OS & Editor Files
+# Ignores junk files created by your operating system or
+# code editor.
+# ===================================================================
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Common Editor Config
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Log files
+*.log
