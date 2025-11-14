@@ -8,15 +8,27 @@ apt-get install -y apache2
 
 
 
-
-mkdir /var/www/html/this-is-a-secret-dir
-
-
-echo "flag{my_first_web_flag_123}" > /var/www/html/this-is-a-secret-dir/user.txt
+# --- CTF Challenge 1: Web Source Code Clue ---
 
 
-echo "User-agent: *" > /var/www/html/robots.txt
-echo "Disallow: /this-is-a-secret-dir/" >> /var/www/html/robots.txt
+mkdir /var/www/html/web-backups
+
+echo "# Admin: Set up a user for file transfers." > /var/www/html/web-backups/vsftpd.conf.bak
+echo "# User: ftp-user" >> /var/www/html/web-backups/vsftpd.conf.bak
+echo "# Pass: SuperSecurePass123!" >> /var/www/html/web-backups/vsftpd.conf.bak
+
+cat <<EOF > /var/www/html/index.html
+<html>
+  <body>
+    <h1>Welcome to the Company Portal</h1>
+    <p>Site is under construction. Please check back later.</p>
+    
+    </body>
+</html>
+EOF
+
+
+
 
 
 # Restart Apache to make sure
