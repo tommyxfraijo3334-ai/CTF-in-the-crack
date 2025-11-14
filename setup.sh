@@ -93,3 +93,11 @@ mv /tmp/logo.jpg /var/www/html/company-logo.jpg
 rm /tmp/hint.txt
 
 # --- End of Challenge 4 ---
+
+
+# --- CTF Challenge 5: "Packet Capture" (Forensics) ---
+
+
+echo "flag{analyzing_packets_is_key_101}" > /tmp/traffic.pcap
+
+# --- End of Challenge 5 ---
