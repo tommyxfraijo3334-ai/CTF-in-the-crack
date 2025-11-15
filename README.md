@@ -26,6 +26,8 @@ You must have these two programs installed:
 4.  Wait 5-10 minutes for the box to build itself.
 
 Once it's finished, your target is live at `192.168.33.10`.
+##steghide is preinstalled 
+company-logo
 
 ---
 
